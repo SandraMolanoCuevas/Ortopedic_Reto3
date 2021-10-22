@@ -5,35 +5,86 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-
+/**
+ *
+ *
+ * @author Sandra Patricia Molano C
+ */
 @Entity
 @Table(name = "ortopedic")
+/**
+ *
+ *
+ * Clase publica
+ */
 public class Ortopedic implements Serializable {
-
-
-
+    /**
+     *
+     *
+     * Metodo para generar valores de la tabla
+     */
     @Id
+    /**
+     *
+     *
+     * anotacion para ignorar
+     */
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String brand;
     private Integer year;
     private String description;
-
+    /**
+     *
+     *
+     * Relacion muchos a unos category
+     */
     @ManyToOne
+    /**
+     *
+     *
+     * anotacion para unir las columnas
+     */
     @JoinColumn(name = "idCategory")
+    /**
+     *
+     *
+     * anotacion para ignorar
+     */
     @JsonIgnoreProperties("ortopedics")
     private Category category;
-
-
+    /**
+     *
+     *
+     * Relacion muchos a unos
+     */
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
+    /**
+     *
+     *
+     * anotacion para ignorar
+     */
     @JsonIgnoreProperties({"ortopedic","client"})
     private List<Message> messages;
-
+    /**
+     *
+     *
+     * Relacion muchos a unos
+     */
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
+    /**
+     *
+     *
+     * anotacion para ignorar
+     */
     @JsonIgnoreProperties({"ortopedic","messages"})
     public List<Reservation> reservations;
-
+    /**
+     *
+     *
+     * Getters and setters
+     */
     public Integer getId() {
         return id;
     }

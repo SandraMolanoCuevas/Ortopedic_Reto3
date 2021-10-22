@@ -11,6 +11,8 @@ import java.util.Map;
 
 @RestController
 public class UserController {
+
+    @CrossOrigin
     @GetMapping("/user")
     public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
         //return principal.getAttributes(); <=NO SE RECOMIENDA! EXPONE DATOS PRIVADOS
